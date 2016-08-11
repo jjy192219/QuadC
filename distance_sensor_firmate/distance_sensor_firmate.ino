@@ -16,7 +16,7 @@ int echoPin = 12;
 void setup()  
 {  
 
-    Firmata.begin();  
+    Firmata.begin(9600);  
 }  
 
 void loop()  

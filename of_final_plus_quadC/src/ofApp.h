@@ -38,7 +38,7 @@ public:
     bool bBlur = false;
     
     
-    int imgWidth, imgHeight, snapCounter, timer, offsetTimer, distance, flex;
+    int imgWidth, imgHeight, snapCounter, timer, offsetTimer, distance, hit;
     
     
     ofArduino ard;

@@ -7,7 +7,8 @@ void ofApp::setup(){
     
     //    ard.connect("/dev/tty.usbmodem1411", 57600);
     
-    ard.connect("/dev/tty.usbserial-DA00VPDQ", 57600);
+//    ard.connect("/dev/tty.usbserial-DA00VPDQ", 57600);
+    ard.connect("/dev/cu.usbmodem1441", 57600);
     
     ofAddListener(ard.EInitialized, this, &ofApp::setupArduino);
     //------------------------------------------------------------------
@@ -43,25 +44,40 @@ void ofApp::update(){
     
     updateArduino();
     
-    distance = ard.getAnalog(7);
-    flex = ard.getAnalog(8);
+//    distance = ard.getAnalog(7);
+//    flex = ard.getAnalog(8);
+//
+//    
+//    cout<<"distance: " + ofToString(distance) + "CM"<<endl;
+//    cout<<"flex: " + ofToString(flex) <<endl;
+//    
+//    if(flex>=670){
+//    
+//        offsetTimer = ofGetElapsedTimef();
+//        
+//        bGlitch = true;
+//
+//    
+//    }
 
     
+    
+    distance = ard.getAnalog(7);
+    hit = ard.getAnalog(6);
+    
+    
     cout<<"distance: " + ofToString(distance) + "CM"<<endl;
-    cout<<"flex: " + ofToString(flex) <<endl;
+    cout<<"Hit: " + ofToString(hit) <<endl;
     
-    if(flex>=670){
-    
+    if(hit<=100){
+        
         offsetTimer = ofGetElapsedTimef();
         
         bGlitch = true;
-
-    
+        
+        
     }
 
-    
-    
-    
     
     
 }
