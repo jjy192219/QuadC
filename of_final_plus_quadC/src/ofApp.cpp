@@ -8,7 +8,7 @@ void ofApp::setup(){
     //    ard.connect("/dev/tty.usbmodem1411", 57600);
     
 //    ard.connect("/dev/tty.usbserial-DA00VPDQ", 57600);
-    ard.connect("/dev/cu.usbmodem1441", 57600);
+    ard.connect("/dev/cu.usbmodem1411", 9600);
     
     ofAddListener(ard.EInitialized, this, &ofApp::setupArduino);
     //------------------------------------------------------------------
@@ -61,7 +61,7 @@ void ofApp::update(){
 //    }
 
     
-    
+//using tilt sensor instead
     distance = ard.getAnalog(7);
     hit = ard.getAnalog(6);
     
@@ -69,7 +69,7 @@ void ofApp::update(){
     cout<<"distance: " + ofToString(distance) + "CM"<<endl;
     cout<<"Hit: " + ofToString(hit) <<endl;
     
-    if(hit<=100){
+    if(hit>500){
         
         offsetTimer = ofGetElapsedTimef();
         
@@ -77,9 +77,6 @@ void ofApp::update(){
         
         
     }
-
-    
-    
 }
 
 
@@ -110,7 +107,7 @@ void ofApp::draw(){
     if (bGlitch == true) {
         
         int offset = timer - offsetTimer;
-        if (offset >= 7) {
+        if (offset >= 3) {
             bGlitch = false;
             offset = 0;
             
@@ -137,10 +134,6 @@ void ofApp::draw(){
         
         //----------------------------- distance mapping-----------------------------
         
-        
-        
-        
-        //----------------------------------------------------------------------------
         if (distance<=100) {
             blur.begin();
             blur.amount = ofMap((100-distance),0,90,0,10,true);
@@ -148,6 +141,8 @@ void ofApp::draw(){
             blur.iterations = ofMap((100-distance),0,90,1,10,true);
             webcam.draw(0,0);
             blur.end();
+            
+
         }
         else{
             
