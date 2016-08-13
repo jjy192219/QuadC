@@ -8,7 +8,7 @@ void ofApp::setup(){
     //    ard.connect("/dev/tty.usbmodem1411", 57600);
     
 //    ard.connect("/dev/tty.usbserial-DA00VPDQ", 57600);
-    ard.connect("/dev/cu.usbmodem1411", 9600);
+    ard.connect("/dev/cu.usbmodem1421", 9600);
     
     ofAddListener(ard.EInitialized, this, &ofApp::setupArduino);
     //------------------------------------------------------------------
